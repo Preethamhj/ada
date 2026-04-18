@@ -18,7 +18,6 @@ void merge(vector<int>& res,int start ,int end , int mid ){
     }
     while(i<=mid){
         temp.push_back(res[i++]);
-
     }
     while(j<=end)temp.push_back(res[j++]);
 
