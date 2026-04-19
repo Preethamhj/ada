@@ -1,18 +1,26 @@
 #include<iostream>
 #include<vector> 
+#include<algorithm>
 
 using namespace std;
-void mincoin(vector<int>& coins ,int target){
-    int n = coins.size()-1;
-        sort(coins.begin(),coins.end());
-        int res = 0;
-        while(res != target){
-            int k = coins[n];
-            res+=k;
-            int rem = target - res;
-            
+void mincoin(vector<int>coins , int target){
+    sort(coins.begin(),coins.end());
+    int count=0;
+    for(int i=0;i<coins.size();i++){
+        if(target >= coins[i]){
+            int temp = target/ coins[i];
+            count+=temp;
+            cout<<coins[i]<<" ";
+            target -=temp*coins[i];
         }
+    }
+    if(target!= 0){
+        cout<<" not possible"<<endl;
+    }else{
+        cout<<"the target is found min count is "<<count;
+    }
 }
+
 int main(){
     int n;
     cout<<" enter the  number of coins ";
