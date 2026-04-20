@@ -15,10 +15,20 @@ class P {
 };
 
 void sjf(vector<P>&p,int n){
-    for(int i=0;i<n-1i++)
+    for(int i=0;i<n-1;i++){
         for(int j=0;j<n-i-1;j++){
-
+            if(p[j].BT > p[j+1].BT){
+                swap(p[j].BT,p[j+1].BT);
+            }
         }
+    }
+    int time1=0;
+    for(int i=0;i<n;i++){
+        p[i].RT = time1;
+        time1+=p[i].BT;
+        p[i].CT = time1;
+        p[i].TAT = p[i].CT - p[i].AT;
+        p[i].WT = p[i].TAT - p[i].BT;
     }
 }
 int main(){

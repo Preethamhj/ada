@@ -1,13 +1,13 @@
 #include<iostream>
-#include<vector> 
+#include<vector>
 
-using namespace std;
-
-int partition(vector<int>& res , int low ,int high){
+using namespace  std;
+/*int partition(vector<int>&res,int low,int high){
      int pivolt = res[high];
      int i=low-1;
+     cout<<"in partiotion";
      for(int j=low;j<high;j++){
-          if(res[j]< pivolt){
+          if(res[j] < pivolt){
                i++;
                swap(res[i],res[j]);
           }
@@ -15,26 +15,46 @@ int partition(vector<int>& res , int low ,int high){
      swap(res[i+1],res[high]);
      return i+1;
 }
-void quicksort(vector<int>&res,int low ,int high){
-     if(high < low ){
-          int pi= partition(res,low ,high);
-          quicksort(res,low ,pi);
-          quicksort(res, pi+1,high);
+*/
+// hoare partition 
+int partition(vector<int>& res , int low ,int high){
+     int pivolt = res[high];
+     int i= low-1;
+     int j= high+1;
+
+     while(true){
+          do{
+               i++;
+          }while(res[i] < pivolt);
+     
+     do{
+          j--;
+     }while(res[j]> pivolt);
+     if(i >= j)return j;
+
+     swap(res[i],res[j]);
+     }
+     
+}
+void quicksort(vector<int>&res ,int low,int high)
+{   
+     if(low < high){
+          int p = partition(res, low, high);
+          quicksort(res,low ,p-1);
+          quicksort(res,p+1,high);
      }
 }
 int main(){
      int n;
-     cout<<"enter  n value ";
      cin>>n;
      vector<int>res(n);
-
-     cout<<"enter the  elements ";
+     cout<<" enter the data ";
      for(int i=0;i<n;i++){
           cin>>res[i];
+
      }
-     quicksort(res,0,res.size()-1);
-     
-       for(int i=0;i<n;i++){
-          cout<<res[i]<<"  ";
+     quicksort(res, 0,n-1);
+     for(int i=0;i<n;i++){
+          cout<<res[i]<<" ";
      }
 }

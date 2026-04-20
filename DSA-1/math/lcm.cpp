@@ -3,6 +3,7 @@
 
 using namespace std;
 
+/*
 int main(){
     int a,b;
     cin>>a>>b;
@@ -15,3 +16,19 @@ int main(){
         start++;
     }
 }
+*/
+   int gcd(int a ,int b){
+    while(b){
+        a%=b;
+        swap(a,b);
+    }
+    cout<<a<<endl;
+    return a;
+   }
+   int main(){
+    int a,b;
+    cin>>a>>b;
+    int p = gcd(a,b);
+    int lcm = a*b / p;
+    cout<<lcm;
+   }
